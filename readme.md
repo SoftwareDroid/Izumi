@@ -1,5 +1,5 @@
 # Izumi
-** Izumi** is a cross-platform python programm that first converts human voice to text and then sends its through a series of modules to provide various functionalities. This can be used, for example, to dictate texts, to execute own voice commands or learn a foreign language. A possible processing chain could for example first translate the text to Spanish, then insert the translation at the current cursor position. And in a last step save the translation in a file.
+**Izumi** is a cross-platform python programm that first converts human voice to text and then sends its through a series of modules to provide various functionalities. This can be used, for example, to dictate texts, to execute own voice commands or learn a foreign language. A possible processing chain could for example first translate the text to Spanish, then insert the translation at the current cursor position. And in a last step save the translation in a file.
 Izumi also supports voice commands e.g. saying *Izumi shutdown* will shutdown the program.
 Most of the complex modules use preexisting machine learning api's over the internet.
 
@@ -24,14 +24,14 @@ I started to develop Izumi because there was no free good voice dictation out th
 ### How to Install <a name="install"></a>
 Most missing dependencies can be installed with *pipenv install* in the project folder.
 The following list shows which modules of Izumi need which dependencies.
- 
+
 Main Module:
 
  - [SpeechRecognition](https://pypi.org/project/SpeechRecognition/)
- - (recommended) get own Google Speech Recognition API key 
+ - (recommended) get own Google Speech Recognition API key
  - PyAudio 0.2.11+ is needed to access the micro input
  - pygame for playing sounds
- 
+
 
 DeeplTranslatorModule:
 
@@ -86,7 +86,7 @@ All voice commands follow the pattern system-name trigger parameter. The default
 Not all actions need a parameter.
 The voice commands of the main module which are always active are listed below.
 
-| Trigger	| Description 	| 
+| Trigger	| Description 	|
 |--------	|-----------	|
 |shutdown| ends the program|
 |go to sleep| Izumi go to sleep until waked up (input is ignored)|
@@ -110,7 +110,7 @@ If omitted the input of the module is used as the output.
 Translates the input to another language by using [www.deepl.com](https://www.deepl.com/translator).
 
 
-See [lang_codes.txt](src/modules/deepl_translator/lang_codes.txt) for the input and output language codes. For example "de" is the input code for german. 
+See [lang_codes.txt](src/modules/deepl_translator/lang_codes.txt) for the input and output language codes. For example "de" is the input code for german.
 
 Parameters:
 
@@ -124,7 +124,7 @@ Inserts the module process at the current cursor position. Ctrl+z can be used to
 
 Parameters:
 
-- format (optional): see PrintModule. 
+- format (optional): see PrintModule.
 
 **FileWriterModule**
 
@@ -132,16 +132,16 @@ Writes the input to a file.
 
 Parameters:
 
-- format (optional): see PrintModule. 
+- format (optional): see PrintModule.
 - file: specifies a file name
 
 **JapaneseCharTransformerModule**
 
-Transform kanji to for e.g. hiragana. Introduces by processing the input the variables hira, kana, romji and orig, which can be used from now on in the format e.g. "{hira}" 
+Transform kanji to for e.g. hiragana. Introduces by processing the input the variables hira, kana, romji and orig, which can be used from now on in the format e.g. "{hira}"
 
 Parameters:
 
-- format (optional): see PrintModule. 
+- format (optional): see PrintModule.
 
 **OfflineTranslatorModule**
 TODO write docs
@@ -163,7 +163,7 @@ Converts the input to audio with a certain pronunciation (language parameter) an
 Voice commands defined by this module:
 
 
-| Action 	| Description 	| 
+| Action 	| Description 	|
 |--------	|-----------	|
 |replay| replays the last played sound|
 
@@ -179,7 +179,7 @@ The process function takes a string as input and produces the output for the nex
 
 The dictionary *settings* contains all parameters are definend in the setting section in the profile file for each module.  
 
-All voice commands are registered in the *register_voice_commands* function. The first parameter is always the id of the module instance. The second is a single string or a list of strings e.g. ["hello","greeting","good morning"] which will trigger a function (third parameter). By saying "Izumi hello I need you" the call _hello("Izumi","hello","I need you") is automatically executed. 
+All voice commands are registered in the *register_voice_commands* function. The first parameter is always the id of the module instance. The second is a single string or a list of strings e.g. ["hello","greeting","good morning"] which will trigger a function (third parameter). By saying "Izumi hello I need you" the call _hello("Izumi","hello","I need you") is automatically executed.
 
 The voice command function should return an *ParseResult*. The most common are:
 
@@ -203,7 +203,7 @@ To make the module usable copy it to a subfolder in src/modules and set an entry
         def _hello(self, system_name: str, trigger: str, argument: str) -> ParseResult:
             print("Hello World!")
             return ParseResult.COMMAND_ACCEPTED
-    
+
         def register_voice_commands(self, sentence_parser : SentenceParser):
             sentence_parser.register_action(id(self), "hello", self._hello)
 ```

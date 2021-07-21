@@ -2,7 +2,11 @@
 # You should customize this list as applicable to your project.
 # Learn more about .gitignore:
 #     https://www.atlassian.com/git/tutorials/saving-changes/gitignore
+<<<<<<< HEAD
 linux_start.sh
+=======
+
+>>>>>>> ad2dbce208e3ae84e3b88cac9d60e742273b6212
 # Node artifact files
 node_modules/
 dist/
