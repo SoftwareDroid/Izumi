@@ -1,0 +1,61 @@
+{
+   "version":[
+      1,
+      0
+   ],
+   "speech-to-text":{
+      "error-output":false,
+      "input-language":"de-DE",
+      "api":"Google"
+   },
+   "main-module":{
+      "system-name":"Izumi",
+      "system-language":"english",
+      "debug-output":false,
+      "read-only":true
+   },
+   "pipeline":{
+      "modules":[
+         {
+            "name":"PunctuationMarksReplacer",
+            "id" : "voice_input",
+            "activated":true,
+            "settings":{
+               "language":"de-DE"
+            }
+         },
+         {
+           "name" : "PrintModule",
+           "activated":true,
+           "settings":{
+
+           }
+         },
+         {
+            "name":"DeeplTranslatorModule",
+            "id":"translator",
+            "activated":true,
+            "settings":{
+               "input-language":"de",
+               "output-language":"ru-RU"
+            }
+         },
+         {
+           "name":"TextToSpeechModule",
+           "activated":true,
+           "settings":{
+              "slow": false,
+              "language": "ru"
+           }
+         },
+         {
+            "name":"FileWriterModule",
+            "activated":true,
+            "settings":{
+               "file":"/home/patrick/Desktop/russian.txt",
+               "format":"{translator_in} => {translator_out}\n"
+            }
+         }
+      ]
+   }
+}

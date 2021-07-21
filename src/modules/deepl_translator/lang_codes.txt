@@ -1,0 +1,53 @@
+## Input language codes
+bg Bulgarian
+zh Chinese
+da Danish
+de German
+en English
+et Estonian
+fi Finnish
+fr French
+el Greek
+it Italian
+ja Japanese
+lv Latvian
+lt Lithuanian
+nl Dutch
+pl Polish
+pt Portuguese
+ro Romanian
+ru Russian
+sv Swedish
+sk Slovak
+sl Slovenian
+es Spanish
+cs Czech
+hu Hungarian
+
+## Output language codes
+bg-BG Bulgarian
+zh-ZH Chinese (simplified)
+da-DA Danish
+de-DE German
+en-US English (American)
+en-GB English (British)
+et-ET Estonian
+fi-FI Finnish
+fr-FR French
+el-EL Greek
+it-IT Italian
+ya-JA Japanese
+lv-LV Latvian
+lt-LT Lithuanian
+nl-NL Dutch
+pl-PL Polish
+pt-PT Portuguese
+pt-BR Portuguese (Brazilian)
+ro-RO Romanian
+ru-RU Russian
+sv-SV Swedish
+sk-SK Slovak
+sl-SL Slovenian
+es-ES Spanish
+cs-CS Czech
+hu-HU Hungarian
