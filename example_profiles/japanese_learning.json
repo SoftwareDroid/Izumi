@@ -1,0 +1,62 @@
+{
+   "version":[
+      1,
+      0
+   ],
+   "speech-to-text":{
+      "error-output":false,
+      "input-language":"de-DE",
+      "api":"Google"
+       },
+   "main-module":{
+      "system-name":"Izumi",
+      "system-language":"english",
+      "debug-output":false,
+      "read-only":true
+   },
+   "pipeline":{
+      "modules":[
+         {
+            "name":"PunctuationMarksReplacer",
+            "activated":true,
+            "settings":{
+               "language":"de-DE"
+            }
+         },
+         {
+            "name":"DeeplTranslatorModule",
+            "id":"translator",
+            "activated":true,
+            "settings":{
+               "input-language":"de",
+               "output-language":"ja-JA"
+            }
+         },
+         {
+                     "name":"JapaneseCharTransformerModule",
+                     "id":"easy_jap",
+                     "activated":true,
+                     "settings":{
+                        "format":"{hira}",
+                        "use-spaces":true
+                     }
+         },
+         {
+           "name":"TextToSpeechModule",
+           "activated":true,
+           "settings":{
+              "slow": true,
+              "language": "ja"
+           }
+         },
+         {
+            "name":"FileWriterModule",
+            "activated":true,
+            "settings":{
+               "file":"/home/patrick/Desktop/file.txt",
+               "format":"{translator_in} => {easy_jap_out}\n"
+            }
+         }
+      ]
+   }
+}
