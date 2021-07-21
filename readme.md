@@ -1,5 +1,5 @@
 # Izumi
-** Izumi** is a cross-platform python programm that first converts human voice to text and then sends its through a series of modules to provide various functionalities. This can be used, for example, to dictate texts, to execute own voice commands or learn a foreign language. A possible processing chain could for example first translate the text to Spanish, then insert the translation at the current cursor position. And in a last step save the translation in a file.
+**Izumi** is a cross-platform python programm that first converts human voice to text and then sends its through a series of modules to provide various functionalities. This can be used, for example, to dictate texts, to execute own voice commands or learn a foreign language. A possible processing chain could for example first translate the text to Spanish, then insert the translation at the current cursor position. And in a last step save the translation in a file.
 Izumi also supports voice commands e.g. saying *Izumi shutdown* will shutdown the program.
 Most of the complex modules use preexisting machine learning api's over the internet.
 
