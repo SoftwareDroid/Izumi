@@ -19,7 +19,7 @@ I started to develop Izumi because there was no free good voice dictation out th
 5. [ Voice Commands](#voice)
 6. [ Develop your own Module](#dev)
 7. [ License](#license)
-8. [ Contact and Support](#contact)
+8. [ Contact and Donate](#contact)
 
 ### How to Install <a name="install"></a>
 Most missing dependencies can be installed with *pipenv install* in the project folder.
