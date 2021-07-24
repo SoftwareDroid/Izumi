@@ -23,23 +23,38 @@ from pydub import AudioSegment
 from gtts import gTTS
 import threading
 import pygame
+import queue
 
 
 class TextToSpeechModule(ModuleInterface):
     _FILE = "tmp/tmp_tts"
     def __init__(self, activated: bool, settings):
         ModuleInterface.__init__(self, activated=activated, settings=settings)
+        self.queue = queue.Queue()
+        self._run = True
 
-    def _play(self, text: str, file: str):
-        slow: bool = self.settings["slow"]
-        lang = self.settings["language"]
-        tts = gTTS(text, lang=lang, slow=slow)
-        tts.save(file + ".mp3")
-        AudioSegment.from_mp3(file + ".mp3").export(file + ".wav", format="wav")
-        # play
-        print(file + ".wav")
-        pygame.mixer.music.load(file + ".wav")
-        pygame.mixer.music.play()
+        thread = threading.Thread(target=self._play)
+        thread.daemon = True
+        thread.start()
+
+    def __del__(self):
+        self._run = False
+
+    def _play(self):
+        while self._run:
+            text = self.queue.get()
+            self.queue.task_done()
+            file: str = TextToSpeechModule._FILE
+
+            slow: bool = self.settings["slow"]
+            lang = self.settings["language"]
+            tts = gTTS(text, lang=lang, slow=slow)
+            tts.save(file + ".mp3")
+            AudioSegment.from_mp3(file + ".mp3").export(file + ".wav", format="wav")
+            # play
+            #print(file + ".wav")
+            pygame.mixer.music.load(file + ".wav")
+            pygame.mixer.music.play()
 
     def _replay(self, s: str, v: str, data: str) -> ParseResult:
         try:
@@ -53,10 +68,7 @@ class TextToSpeechModule(ModuleInterface):
         sentence_parser.register_action(id(self), "replay", self._replay)
 
     def process(self, text: str) -> str:
-        filename: str = TextToSpeechModule._FILE
-        thread = threading.Thread(target=self._play, args=(text, filename))
-        thread.daemon = True
-        thread.start()
+        self.queue.put(text)
         return text
 
 

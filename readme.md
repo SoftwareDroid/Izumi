@@ -212,3 +212,7 @@ To make the module usable copy it to a subfolder in src/modules and set an entry
 Izumi is published under the *GNU Affero General Public License*.
 ## Contact <a name="contact"></a>
 Created by Patrick Mispelhorn (patrick.mispelhorn@web.de) - feel free to contact me!
+## 
+
+Support the development of Izumi:
+[Izumi's Patreon Page](https://www.patreon.com/user?u=59017530)

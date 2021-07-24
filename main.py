@@ -24,9 +24,14 @@ import time
 import sys
 import os
 import argparse
+#from pynput import mouse, keyboard
 
 
 def main():
+
+
+
+
     parser = argparse.ArgumentParser(description='Izumi a personal assistant')
     parser.add_argument('-key', metavar="GOOGLE_API_KEY", type=str,
                         help="An key for accessing a speech to text API. An default will be used if not set.")
@@ -35,7 +40,21 @@ def main():
 
     args = parser.parse_args()
 
+    def on_activate_h():
+        print('<ctrl>+<alt>+h pressed')
+
+    def on_activate_i():
+        print('<ctrl>+<alt>+i pressed')
+
+    #with keyboard.GlobalHotKeys({
+    #    '<ctrl>+m': on_activate_h,
+    #    '<ctrl>+<alt>+i': on_activate_i}) as h:
+    #    print(h)
+
+        #
+
     # init sound output
+    pygame.init()
     pygame.mixer.init()
 
     controller: Controller = Controller(args)
@@ -48,10 +67,12 @@ def main():
 
 
     while controller.get_mode() != Controller.Mode.POWER_OFF:
-        text: str = None
         text = speechToTextModule.voice_commands.get()
-        controller.parse(text)
         speechToTextModule.voice_commands.task_done()
+        controller.parse(text)
+
+        #events = pygame.event.get()
+
         # print("Process voice command" ,text)
     print("Shutdown ...")
     # calling this function requests that the background listener stop listening
@@ -61,7 +82,7 @@ def main():
     # we're not listening anymore, even though the background thread might still be running for a second or two while cleaning u
     for _ in range(0, 30):
         time.sleep(0.1)
-
+    h.join()
     print("Shutdown complete")
 
 

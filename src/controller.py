@@ -45,6 +45,7 @@ class Controller:
         self._sentence_parser: SentenceParser = SentenceParser(Controller.DEFAULT_SYSTEM_NAME, self._check_module_permission)
         self._all_modules: List[ModuleInterface] = []
         self._register_actions()
+        self._ignore_input = []
 
         self.system_language = "english"
         self.debug_output: bool = False
@@ -89,6 +90,10 @@ class Controller:
 
     def parse(self, text: str):
         """True process """
+        for prefix in self._ignore_input:
+            if text.startswith(prefix):
+                print("Info ignore input: ",text)
+                return
         print("Info Parse: ", text)
         results = self._sentence_parser.parse(text)
         actions = {ParseResult.FUNCTIONALITY_MISSING: self._show_error_missing_functionality,
@@ -150,6 +155,7 @@ class Controller:
         self.module_variables.clear()
         for m in self._all_modules:
             if m.activated:
+                print(m)
                 # Save process and output if idenifier is set
                 if m.identifier is not None:
                     self.module_variables["{}_in".format(m.identifier)] = text
@@ -157,6 +163,7 @@ class Controller:
                 if m.identifier is not None:
                     self.module_variables["{}_out".format(m.identifier)] = text
                 if text is None:
+                    print("pipeline abort")
                     break
 
     def _show_hint_command_accepted(self, text):

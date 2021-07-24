@@ -29,5 +29,6 @@ class DeeplTranslatorModule(ModuleInterface):
         target = self.settings["output-language"]
         # default timeout value for one translation
         timeout = self.settings.get("timeout",  30)
+        #print(timeout)
         text = self._translator.translate(text=text,input_lang_code=source,output_language_code=target,timeout=timeout)
         return text

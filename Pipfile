@@ -19,6 +19,7 @@ selenium-wire = "*"
 gtts = "*"
 pydub = "*"
 hjson = "*"
+pynput = "*"
 
 [dev-packages]
 

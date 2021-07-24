@@ -33,6 +33,7 @@ class ProfileLoader(ProfileLoaderInterface):
             mainModule = jsonObject["main-module"]
             sytem_name = mainModule["system-name"]
             system_language = mainModule["system-language"]
+            ignore_input = mainModule.get("ignore-input",[])
             debug_output = mainModule["debug-output"]
             ro = mainModule["read-only"]
             sleeping = mainModule.get("start-sleeping", False)
@@ -70,7 +71,8 @@ class ProfileLoader(ProfileLoaderInterface):
             self.controller.set_subject_name(sytem_name)
             self.controller.system_language = system_language
             self.controller.debug_output = debug_output
-            self.controller.profile_is_read_only = ro
+            self.controller._ignore_input = ignore_input
+            #self.controller.profile_is_read_only = ro
             if sleeping:
                 self.controller._mode = Controller.Mode.SLEEPING
             else:
