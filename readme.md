@@ -18,7 +18,7 @@ I started to develop Izumi because there was no free good voice dictation out th
 3. [ Profile file](#profile)
 4. [ Modules](#modules)
 5. [ Voice Commands](#voice)
-6. [ Remote Control](#remote)
+6. [ Remote Control and Hot Keys](#remote)
 7. [ Develop your own Module](#dev)
 8. [ License](#license)
 9. [ Contact and Donate](#contact)
@@ -66,6 +66,8 @@ The following command starts Izumi:
 
 
 For simple test purposes the key parameter can also be omitted. In this case a default key is used. All other parameters are defined in the profile file provided.
+
+The optional argument `--server` allows it to send commands over a tcp socket to izumi, which allows for example control it via hot keys see [ Remote Control and Hot Keys](#remote).
 ### The Profile File <a name="profile"></a>
 Profile files are written in the [HJSON](https://hjson.github.io/) format.
 For examples see in *example_profiles* folder.
@@ -175,11 +177,13 @@ Parameters:
 - slow (boolean): reduces if set the play back speed
 - language: an IETF language tag
 ## Remote Control <a name="remote"></a>
-By default Izumi starts a server to accept voice commands remotely. This can be used to trigger with hot keys the same functions in Izumi. For example by binding `<ctrl>+<T>` in the system settings to the command: 
+By starting Izumi with the `--server` option allows it to send input to Izumi over a tcp socket (default port 47193). Which allows it Izumi to accept voice commands remotely. This can be used to trigger with hot keys the same functions in Izumi. For example by binding `<ctrl>+<T>` in the system settings to the command: 
  
 `python3 /home/patrick/projects/Izumi/client/client.py -input "{system} toggle sleep"`
 
-This will activate and deactivate Izumi by pressing the hot key. The system variable is automatically replaced with the appropriate system name.  
+
+This will activate and deactivate Izumi by pressing the hot key. The system variable ({system}) is automatically replaced with the appropriate system name.  
+The client.py sends just the argument to Izumis default socket. And then closes the connection. 
 
 ![Linux Gnome System Shortcut](doc/remote_keys.png)
 

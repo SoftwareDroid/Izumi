@@ -37,21 +37,13 @@ def main():
                         help="An key for accessing a speech to text API. An default will be used if not set.")
     parser.add_argument('-profile', dest="profile_name", required=True, metavar="FILE", type=str,
                         help='path to a profile for setting up the pipeline')
+    parser.add_argument('--server', dest="server",nargs='?',
+                        help='starts remote control')
     #parser.add_argument('-port', dest="profile_name", required=True, metavar="FILE", type=str,
     #                    help='path to a profile for setting up the pipeline')
 
     args = parser.parse_args()
-
-    def on_activate_h():
-        print('<ctrl>+<alt>+h pressed')
-
-    def on_activate_i():
-        print('<ctrl>+<alt>+i pressed')
-
-    #with keyboard.GlobalHotKeys({
-    #    '<ctrl>+m': on_activate_h,
-    #    '<ctrl>+<alt>+i': on_activate_i}) as h:
-    #    print(h)
+    print("Server: ",args.server)
 
         #
 
@@ -67,8 +59,9 @@ def main():
     # Load Profile
     assert profile_loader.load_profile(args.profile_name) , "Profile load failed!"
     port = 47193
-    server = RemoteQueueServer(speechToTextModule.voice_commands,port)
-    server.run()
+    if args.server:
+        server = RemoteQueueServer(speechToTextModule.voice_commands,port)
+        server.run()
 
 
     while controller.get_mode() != Controller.Mode.POWER_OFF:
@@ -79,7 +72,8 @@ def main():
         #events = pygame.event.get()
 
         # print("Process voice command" ,text)
-    server.stop()
+    if args.server:
+        server.stop()
     print("Shutdown ...")
     # calling this function requests that the background listener stop listening
     speechToTextModule.shutdown()
