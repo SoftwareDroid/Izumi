@@ -177,12 +177,12 @@ Parameters:
 - slow (boolean): reduces if set the play back speed
 - language: an IETF language tag
 ## Remote Control <a name="remote"></a>
-By starting Izumi with the `--server` option allows it to send input to Izumi over a tcp socket (default port 47193). Which allows it Izumi to accept voice commands remotely. This can be used to trigger with hot keys the same functions in Izumi. For example by binding `<ctrl>+<T>` in the system settings to the command: 
+By starting Izumi with the `--server` option allows it to send input to Izumi over a tcp socket (default port 47193). Which allows it Izumi to accept voice commands remotely. This can be used to trigger with hot keys the same functions in Izumi. For example by binding `<ctrl>+<T>` in the operating system settings to the command: 
  
 `python3 /home/patrick/projects/Izumi/client/client.py -input "{system} toggle sleep"`
 
 
-This will activate and deactivate Izumi by pressing the hot key. The system variable ({system}) is automatically replaced with the appropriate system name.  
+This will activate and deactivate Izumi by pressing the hot key. The system variable ({system}) is automatically replaced with the appropriate system name (here with Izumi).  
 The client.py sends just the argument to Izumis default socket. And then closes the connection. 
 
 ![Linux Gnome System Shortcut](doc/remote_keys.png)
