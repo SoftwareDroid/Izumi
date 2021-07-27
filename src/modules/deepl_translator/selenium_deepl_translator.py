@@ -35,9 +35,9 @@ class SeleniumDeeplTranslator:
         self._driver.response_interceptor = SeleniumDeeplTranslator._Interceptor.interceptor
         # Webanwendung aufrufen
         self._driver.get("https://www.deepl.com/translator")
-        self._input_field = self._driver.find_elements_by_class_name("lmt__source_textarea")
-        assert len(self._input_field) == 1, "process field not unique"
-        self._input_field = self._input_field[0]
+        self._input_field = self._driver.find_element_by_xpath("//textarea[contains(@class, 'lmt__source_textarea')]")
+        #assert len(self._input_field) == 1, "process field not unique"
+        #self._input_field = self._input_field[0]
         self._input_lang = None
         self._output_lang = None
 

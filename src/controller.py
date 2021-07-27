@@ -14,7 +14,7 @@
 #
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
+from src.partial_formatter import PartialFormatter
 from src.sentence_parser import SentenceParser
 # from src.parameters import SYSTEM_NAME
 from src.parse_result import ParseResult
@@ -36,6 +36,7 @@ class Controller:
         POWER_OFF = 2
 
     WAKE_UP_COMMAND: str = "wake up"
+    TOGGLE_SLEEP_COMMAND = "toggle sleep"
 
     def __init__(self, args):
         self.module_variables = {}
@@ -58,6 +59,8 @@ class Controller:
         #self._sentence_parser.register_action(id(self), "disable", self.command_stop_module)
         self._sentence_parser.register_action(id(self), Controller.WAKE_UP_COMMAND, self._command_awake)
         self._sentence_parser.register_action(id(self), "go to sleep", self._command_go_to_sleep)
+
+        self._sentence_parser.register_action(id(self), Controller.TOGGLE_SLEEP_COMMAND, self._command_toggle_sleep)
         self._sentence_parser.register_action(id(self), ["shutdown", "power off", "power of"], self._command_power_off)
         self._sentence_parser.register_action(id(self), "load Profile", self._command_load_profile)
 
@@ -89,6 +92,10 @@ class Controller:
 
     def parse(self, text: str):
         """True process """
+
+        fmt = PartialFormatter()
+
+        text = fmt.format(text, system=self._sentence_parser.get_system_name())
         print("Info Parse: ", text)
         results = self._sentence_parser.parse(text)
         actions = {ParseResult.FUNCTIONALITY_MISSING: self._show_error_missing_functionality,
@@ -114,7 +121,7 @@ class Controller:
     def _check_module_permission(self, key: int, subject: str, verb: str, arg: str) -> bool:
         # Only the main module is allowed to execute commands while in sleeping mode
         if self._mode == Controller.Mode.SLEEPING:
-            if key != id(self) or verb != Controller.WAKE_UP_COMMAND:
+            if key != id(self) :
                 return False
         return True
 
@@ -125,6 +132,13 @@ class Controller:
                 m.initialize(self._sentence_parser)
                 return ParseResult.COMMAND_ACCEPTED
         return ParseResult.ARGUMENT_ERROR
+
+    def _command_toggle_sleep(self, s: str, v: str, data: str) -> ParseResult:
+        states  = { Controller.Mode.SLEEPING :  Controller.Mode.AWAKE,  Controller.Mode.AWAKE :  Controller.Mode.SLEEPING,  Controller.Mode.POWER_OFF : Controller.Mode.POWER_OFF}
+        self._mode = states[self._mode]
+
+        return ParseResult.COMMAND_ACCEPTED
+
 
     def _command_go_to_sleep(self, s: str, v: str, data: str) -> ParseResult:
         self._mode = Controller.Mode.SLEEPING

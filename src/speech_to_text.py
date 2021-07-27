@@ -31,6 +31,9 @@ class SpeechToText:
         else:
             print("Use API-KEY: ", args.key)
 
+    def feed_input(self,text: str):
+        self.voice_commands.put(text)
+
     def start(self):
         m = sr.Microphone()
         r = sr.Recognizer()

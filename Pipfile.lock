@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "d763e3857cd332afe061c770e7d161d61caa11f438a68f91471e20f7c9644f79"
+            "sha256": "be5a4f5e11705ef31af3c29e791ea9374ff01b8edb038d6433f9fcba9eb1c3f2"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -155,19 +155,19 @@
         },
         "google-api-python-client": {
             "hashes": [
-                "sha256:345bb7249ac9af93a6c75e4adb93a41139459945aee61e611a5c8e5b146cbef7",
-                "sha256:b3874333cabc5ce46dcda2da48f1b258e227a9ae61688211e277e11270386307"
+                "sha256:2a8c34fccbf5c1636898c0dbaef6745f8f5150ba5304e6de0f8f0635dcf47847",
+                "sha256:30062b369623cb023592b7f721dd8463389f45bcf2713e56c7a3a509b65c250a"
             ],
             "index": "pypi",
-            "version": "==2.13.0"
+            "version": "==2.14.0"
         },
         "google-auth": {
             "hashes": [
-                "sha256:9bd25d835c01ca3dd9045ea0b50f036e3fe3868ee2c5a9773a661925bbdf46ca",
-                "sha256:a756a33978fac611e4f00b69715b80e35467c30cc6262132d29d33a0e398ac55"
+                "sha256:036dd68c1e8baa422b6b61619b8e02793da2e20f55e69514612de6c080468755",
+                "sha256:7665c04f2df13cc938dc7d9066cddb1f8af62b038bc8b2306848c1b23121865f"
             ],
             "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4, 3.5'",
-            "version": "==1.33.0"
+            "version": "==1.33.1"
         },
         "google-auth-httplib2": {
             "hashes": [
@@ -258,6 +258,14 @@
                 "sha256:3d5845817ec8a4d5504379cc11bd570b038850ee49c4580bc0998c8fb1d327ad"
             ],
             "version": "==0.9"
+        },
+        "keyboard": {
+            "hashes": [
+                "sha256:63ed83305955939ca5c9a73755e5cc43e8242263f5ad5fd3bb7e0b032f3d308b",
+                "sha256:8e9c2422f1217e0bd84489b9ecd361027cc78415828f4fe4f88dd4acd587947b"
+            ],
+            "index": "pypi",
+            "version": "==0.13.5"
         },
         "mouseinfo": {
             "hashes": [
@@ -622,11 +630,11 @@
         },
         "selenium-wire": {
             "hashes": [
-                "sha256:4ea7a3e938518ba836eff7058d55e3d9cb528c68fcfd4d9a6c7bdc7ee741d3ac",
-                "sha256:5a9f8461076ceb3e11556ff7cddbab4f70ed6fb188a8ba5b385f42584448ec95"
+                "sha256:27befe7fbb255db3971530941b0e6d268109c0fa9e1448976fa3470666c82a34",
+                "sha256:ad14b88e4b43f3500d237e8f16b7762f22dc0c73553c311940347cede2bdf0c7"
             ],
             "index": "pypi",
-            "version": "==4.3.2"
+            "version": "==4.4.0"
         },
         "six": {
             "hashes": [
