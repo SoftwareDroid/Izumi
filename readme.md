@@ -92,7 +92,7 @@ The voice commands of the main module which are always active are listed below.
 |--------	|-----------	|
 |shutdown| ends the program|
 |go to sleep| Izumi go to sleep until waked up (input is ignored)|
-|toggle sleep| switch between sleep and activ|
+|toggle sleep| switch between sleep and active|
 |wake up |set Izumi to active|
 |load profile PROFILE_FILE|load a profile file (lower case) in the profile folder. Adding .json to the name and replacing spaces with underscores. For example saying *Izumi load profile English dictation* will try to load the file *profiles/english_dictation.json*|
 
