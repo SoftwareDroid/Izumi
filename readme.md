@@ -8,6 +8,7 @@ Key Features:
 - a pipline of different modules (the output of a module is the input of the next one)
 - easy to add new functionality with a module
 - support of own voice commands instead of a GUI with a new module
+- remote controllable via e.g. hot keys
 
 I started to develop Izumi because there was no free good voice dictation out there, which could easily be extended with new features.
 
@@ -17,9 +18,10 @@ I started to develop Izumi because there was no free good voice dictation out th
 3. [ Profile file](#profile)
 4. [ Modules](#modules)
 5. [ Voice Commands](#voice)
-6. [ Develop your own Module](#dev)
-7. [ License](#license)
-8. [ Contact and Donate](#contact)
+6. [ Remote Control](#remote)
+7. [ Develop your own Module](#dev)
+8. [ License](#license)
+9. [ Contact and Donate](#contact)
 
 ### How to Install <a name="install"></a>
 Most missing dependencies can be installed with *pipenv install* in the project folder.
@@ -90,6 +92,7 @@ The voice commands of the main module which are always active are listed below.
 |--------	|-----------	|
 |shutdown| ends the program|
 |go to sleep| Izumi go to sleep until waked up (input is ignored)|
+|toggle sleep| switch between sleep and activ|
 |wake up |set Izumi to active|
 |load profile PROFILE_FILE|load a profile file (lower case) in the profile folder. Adding .json to the name and replacing spaces with underscores. For example saying *Izumi load profile English dictation* will try to load the file *profiles/english_dictation.json*|
 
@@ -171,6 +174,12 @@ Parameters:
 
 - slow (boolean): reduces if set the play back speed
 - language: an IETF language tag
+## Remote Control <a name="remote"></a>
+By default Izumi starts a server to accept voice commands remotely. This can be used to trigger with hot keys same functions in Izumi. For example by binding <ctrl>+<T> in the system settings to the command: 
+ 
+`python3 /home/patrick/projects/Izumi/client/client.py -input "{system} toggle sleep"`
+
+This will activate and deactivate Izumi by pressing the hot key. The system variable is automatically replaced with the appropriate system name.  
 
 ## Develop your own module <a name="dev"></a>
 The following code shows the *FooModule*, which is a copy of the *PrintModule* and extented with an own voice command. Which prints "Hello World!" to the console and is activated by saying *Izumi hello*.
