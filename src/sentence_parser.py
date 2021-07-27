@@ -31,6 +31,9 @@ class SentenceParser:
         for s in subjects:
             self._subjects.add(s.lower())
 
+    def get_system_name(self):
+        return next(iter(self._subjects),None)
+
     def set_subject(self,subjects: Set[str]):
         self._subjects: Set[str] = set()
         for s in subjects:

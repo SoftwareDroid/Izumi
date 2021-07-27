@@ -24,8 +24,8 @@ import time
 import sys
 import os
 import argparse
-#from pynput import mouse, keyboard
-
+from src.server import RemoteQueueServer
+import threading
 
 def main():
 
@@ -37,6 +37,8 @@ def main():
                         help="An key for accessing a speech to text API. An default will be used if not set.")
     parser.add_argument('-profile', dest="profile_name", required=True, metavar="FILE", type=str,
                         help='path to a profile for setting up the pipeline')
+    #parser.add_argument('-port', dest="profile_name", required=True, metavar="FILE", type=str,
+    #                    help='path to a profile for setting up the pipeline')
 
     args = parser.parse_args()
 
@@ -64,6 +66,9 @@ def main():
     controller.profileLoader = profile_loader
     # Load Profile
     assert profile_loader.load_profile(args.profile_name) , "Profile load failed!"
+    port = 47193
+    server = RemoteQueueServer(speechToTextModule.voice_commands,port)
+    server.run()
 
 
     while controller.get_mode() != Controller.Mode.POWER_OFF:
@@ -74,6 +79,7 @@ def main():
         #events = pygame.event.get()
 
         # print("Process voice command" ,text)
+    server.stop()
     print("Shutdown ...")
     # calling this function requests that the background listener stop listening
     speechToTextModule.shutdown()

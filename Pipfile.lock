@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "1d7d3adcbe4eeaf19ea7ed169c0e2097a221c37f1f911db221f7831e3aa17f0d"
+            "sha256": "be5a4f5e11705ef31af3c29e791ea9374ff01b8edb038d6433f9fcba9eb1c3f2"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -265,6 +265,14 @@
                 "sha256:3d5845817ec8a4d5504379cc11bd570b038850ee49c4580bc0998c8fb1d327ad"
             ],
             "version": "==0.9"
+        },
+        "keyboard": {
+            "hashes": [
+                "sha256:63ed83305955939ca5c9a73755e5cc43e8242263f5ad5fd3bb7e0b032f3d308b",
+                "sha256:8e9c2422f1217e0bd84489b9ecd361027cc78415828f4fe4f88dd4acd587947b"
+            ],
+            "index": "pypi",
+            "version": "==0.13.5"
         },
         "mouseinfo": {
             "hashes": [
@@ -646,11 +654,19 @@
         },
         "selenium-wire": {
             "hashes": [
+<<<<<<< HEAD
                 "sha256:1aa730b5a110ce59eb965e4e99fe4877b6adfc7bc0390dfd0e25e4b4c7347dc6",
                 "sha256:6d0e56dd11f51b339a21d35b06c64736d9c304a23143ebfc17238deab4ee0bc5"
             ],
             "index": "pypi",
             "version": "==4.3.3"
+=======
+                "sha256:27befe7fbb255db3971530941b0e6d268109c0fa9e1448976fa3470666c82a34",
+                "sha256:ad14b88e4b43f3500d237e8f16b7762f22dc0c73553c311940347cede2bdf0c7"
+            ],
+            "index": "pypi",
+            "version": "==4.4.0"
+>>>>>>> shortcuts
         },
         "six": {
             "hashes": [
