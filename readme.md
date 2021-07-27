@@ -175,7 +175,7 @@ Parameters:
 - slow (boolean): reduces if set the play back speed
 - language: an IETF language tag
 ## Remote Control <a name="remote"></a>
-By default Izumi starts a server to accept voice commands remotely. This can be used to trigger with hot keys same functions in Izumi. For example by binding <ctrl>+<T> in the system settings to the command: 
+By default Izumi starts a server to accept voice commands remotely. This can be used to trigger with hot keys the same functions in Izumi. For example by binding `<ctrl>+<T>` in the system settings to the command: 
  
 `python3 /home/patrick/projects/Izumi/client/client.py -input "{system} toggle sleep"`
 
