@@ -181,6 +181,8 @@ By default Izumi starts a server to accept voice commands remotely. This can be 
 
 This will activate and deactivate Izumi by pressing the hot key. The system variable is automatically replaced with the appropriate system name.  
 
+![Linux Gnome System Shortcut](doc/remote_keys.png)
+
 ## Develop your own module <a name="dev"></a>
 The following code shows the *FooModule*, which is a copy of the *PrintModule* and extented with an own voice command. Which prints "Hello World!" to the console and is activated by saying *Izumi hello*.
 
