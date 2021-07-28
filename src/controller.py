@@ -107,13 +107,17 @@ class Controller:
                    ParseResult.VERB_MISSING: self._show_error_verb_missing,
                    ParseResult.PERMISSION_DENIED_SILENT: lambda x: x,  # Ignore output
                    ParseResult.COMMAND_ACCEPTED_SILENT: lambda  x: x,
+                   ParseResult.COMMAND_ACCEPTED_ALTERNATIVE_SOUND: self._show_hint_command_accepted_2,
                    ParseResult.COMMAND_ACCEPTED: self._show_hint_command_accepted}
         # An process can trigger multiple results
         for result in results:
             if result in actions:
                 actions[result](text)
             elif result == ParseResult.TRIGGER_WORD_MISSING:
-                self._forward_input_to_current_module(text)
+                if self._mode == Controller.Mode.AWAKE:
+                    self._forward_input_to_current_module(text)
+                else:
+                    print("I'm sleeping!")
             else:
                 assert False, "Parse Result undefined"
 
@@ -140,7 +144,8 @@ class Controller:
     def _command_toggle_sleep(self, s: str, v: str, data: str) -> ParseResult:
         states  = { Controller.Mode.SLEEPING :  Controller.Mode.AWAKE,  Controller.Mode.AWAKE :  Controller.Mode.SLEEPING,  Controller.Mode.POWER_OFF : Controller.Mode.POWER_OFF}
         self._mode = states[self._mode]
-
+        if self._mode == Controller.Mode.SLEEPING:
+            return ParseResult.COMMAND_ACCEPTED_ALTERNATIVE_SOUND
         return ParseResult.COMMAND_ACCEPTED
 
 
@@ -181,6 +186,11 @@ class Controller:
 
     def _show_hint_command_accepted(self, text):
         pygame.mixer.music.load("assets/misc_menu.wav")
+        pygame.mixer.music.play()
+        print("command accepted ", text)
+
+    def _show_hint_command_accepted_2(self, text):
+        pygame.mixer.music.load("assets/load.wav")
         pygame.mixer.music.play()
         print("command accepted ", text)
 

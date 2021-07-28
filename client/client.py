@@ -5,6 +5,8 @@ import socket               # Import socket module
 parser = argparse.ArgumentParser(description='Izumi remote control')
 parser.add_argument('-input',required=True, type=str,
                     help="the command")
+parser.add_argument('-port', dest="port", required=False, default=47193, type=int,
+                    help="The port for the remote control")
 # parser.add_argument('-port', dest="profile_name", required=True, metavar="FILE", type=str,
 #                    help='path to a profile for setting up the pipeline')
 
@@ -14,7 +16,7 @@ try:
     s = socket.socket()         # Create a socket object
     #host = socket.gethostname() # Get local machine name
     host = '127.0.0.1'
-    port = 47193               # Reserve a port for your service.
+    port = args.port               # Reserve a port for your service.
     s.connect((host, port))
     s.sendall(command.encode("utf-8"))
     s.close()                     # Close the socket when done

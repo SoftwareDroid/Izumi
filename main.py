@@ -37,13 +37,13 @@ def main():
                         help="An key for accessing a speech to text API. An default will be used if not set.")
     parser.add_argument('-profile', dest="profile_name", required=True, metavar="FILE", type=str,
                         help='path to a profile for setting up the pipeline')
-    parser.add_argument('--server', dest="server",nargs='?',
+    parser.add_argument('--server', action='store_true',
                         help='starts remote control')
-    #parser.add_argument('-port', dest="profile_name", required=True, metavar="FILE", type=str,
+    parser.add_argument('-port', dest="port", required=False, default=47193, type=int)
     #                    help='path to a profile for setting up the pipeline')
 
     args = parser.parse_args()
-    print("Server: ",args.server)
+    #print("Server: ",args)
 
         #
 
@@ -58,15 +58,16 @@ def main():
     controller.profileLoader = profile_loader
     # Load Profile
     assert profile_loader.load_profile(args.profile_name) , "Profile load failed!"
-    port = 47193
+
     if args.server:
-        server = RemoteQueueServer(speechToTextModule.voice_commands,port)
+        server = RemoteQueueServer(speechToTextModule.voice_commands,args.port)
         server.run()
 
 
     while controller.get_mode() != Controller.Mode.POWER_OFF:
         text = speechToTextModule.voice_commands.get()
         speechToTextModule.voice_commands.task_done()
+        #print(text)
         controller.parse(text)
 
         #events = pygame.event.get()
