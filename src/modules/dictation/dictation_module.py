@@ -27,6 +27,8 @@ class DictationModule(ModuleInterface):
 
 
     def process(self, text: str) -> str:
+
+
         # Apply format if set
         if "format" in self.settings:
             fmt = PartialFormatter()

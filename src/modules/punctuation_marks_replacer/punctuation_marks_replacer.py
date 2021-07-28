@@ -19,11 +19,30 @@ from src.modules.module_interface import ModuleInterface
 from src.modules.punctuation_marks_replacer.replacement_table import replacement_table
 
 class PunctuationMarksReplacer(ModuleInterface):
+    def __init__(self, activated: bool, settings):
+        ModuleInterface.__init__(self, activated=activated, settings=settings)
+        self._capilalize = True
+        self._add_space = False
+
+
     def process(self, text: str) -> str:
         assert "language" in self.settings, "language for replacer not defined"
         lang: str = self.settings["language"]
         assert lang in replacement_table, " language not found " + replacement_table.keys()
         local_table = replacement_table[lang]
-        for key in local_table.keys():
-            text = text.replace(key, local_table[key])
+        for entry in local_table:
+            text = text.replace(entry[0], entry[1])
+
+        auto_capitalize = self.settings.get("sentence-begin-capitalize", True)
+        print(auto_capitalize)
+        if auto_capitalize:
+            #self._capilalize = text.startswith(".") or text.startswith("!") or text.startswith("?")
+            if self._capilalize and len(text) > 1:
+                text = text[0].upper() + text[1:]
+            if self._add_space and len(text) > 1:
+                text = " " + text
+            # Next
+            self._capilalize = text.endswith(".") or text.endswith("!") or text.endswith("?")
+            self._add_space = self._capilalize or (not text.endswith(" "))
+
         return text

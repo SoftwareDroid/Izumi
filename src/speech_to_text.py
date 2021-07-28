@@ -39,8 +39,13 @@ class SpeechToText:
         r = sr.Recognizer()
 
 
+
         with m as source:
             r.adjust_for_ambient_noise(source)  # we only need to calibrate once, before we start listening
+        print(r.non_speaking_duration)
+        #r.non_speaking_duration = 0.2
+
+        #r.pause_threshold = 0.3
 
         # start listening in the background (note that we don't have to do this inside a `with` statement)
         self._stop_listening = r.listen_in_background(m,self._callback, phrase_time_limit=None)
