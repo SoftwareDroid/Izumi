@@ -36,8 +36,7 @@ class SeleniumDeeplTranslator:
         # Webanwendung aufrufen
         self._driver.get("https://www.deepl.com/translator")
         assert len(self._driver.page_source) != 0, "Page get failed. Decoding Error?"
-        #print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-        #print(len(self._driver.page_source))
+                #print(len(self._driver.page_source))
         #print(self._driver.page_source)
         #time.sleep(10)
         self._input_field = self._driver.find_element_by_xpath("//textarea[contains(@class, 'lmt__source_textarea')]")

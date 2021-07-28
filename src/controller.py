@@ -173,7 +173,6 @@ class Controller:
         self.module_variables.clear()
         for m in self._all_modules:
             if m.activated:
-                print(m)
                 # Save process and output if idenifier is set
                 if m.identifier is not None:
                     self.module_variables["{}_in".format(m.identifier)] = text

@@ -43,7 +43,7 @@ def main():
     #                    help='path to a profile for setting up the pipeline')
 
     args = parser.parse_args()
-    #print("Server: ",args)
+
 
         #
 
@@ -67,14 +67,15 @@ def main():
     while controller.get_mode() != Controller.Mode.POWER_OFF:
         text = speechToTextModule.voice_commands.get()
         speechToTextModule.voice_commands.task_done()
-        #print(text)
+
         controller.parse(text)
 
         #events = pygame.event.get()
 
         # print("Process voice command" ,text)
-    print("stop server")
+
     if args.server:
+        print("stop server")
         server.stop()
     print("Shutdown ...")
     # calling this function requests that the background listener stop listening

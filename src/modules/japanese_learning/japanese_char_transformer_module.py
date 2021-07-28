@@ -45,6 +45,5 @@ class JapaneseCharTransformerModule(ModuleInterface):
         self.module_variables["romaji"] = romaji.lstrip()
         fmt = PartialFormatter()
         ret = fmt.format(self.settings["format"],**self.module_variables)
-        print(ret)
         return ret
 

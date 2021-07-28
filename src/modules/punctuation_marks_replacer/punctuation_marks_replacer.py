@@ -34,7 +34,6 @@ class PunctuationMarksReplacer(ModuleInterface):
             text = text.replace(entry[0], entry[1])
 
         auto_capitalize = self.settings.get("sentence-begin-capitalize", True)
-        print(auto_capitalize)
         if auto_capitalize:
             #self._capilalize = text.startswith(".") or text.startswith("!") or text.startswith("?")
             if self._capilalize and len(text) > 1:

@@ -53,7 +53,7 @@ class SpeechToText:
         print("Start Listening...")
 
     def shutdown(self):
-        self._stop_listening(wait_for_stop=False)
+        self._stop_listening(wait_for_stop=True)
         # clear queue
         while not self.voice_commands.empty():
             self.voice_commands.get()
@@ -63,7 +63,7 @@ class SpeechToText:
 
     def _callback(self, recognizer, audio):
         if self._controller.get_mode() != Controller.Mode.AWAKE and self.args.server:
-            print("Info (Sleep Mode): ignore input for privacy reasons!")
+            #print("Info (Sleep Mode): ignore input for privacy reasons!")
             return
 
         #print("Info: Listener callback")
