@@ -16,16 +16,17 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import queue
-
+from src.controller import Controller
 import speech_recognition as sr
 import pygame
 # TODO Problem es wird immer das default micro genommen.
 class SpeechToText:
-    def __init__(self,args):
+    def __init__(self,args,controller: Controller):
         self.voice_commands = queue.Queue()
         self.args = args
         self.input_language = ""
         self.print_errors = False
+        self._controller: Controller = controller
         if args.key is None:
             print("Use default Google API Key")
         else:
@@ -61,6 +62,10 @@ class SpeechToText:
         self.voice_commands.join()
 
     def _callback(self, recognizer, audio):
+        if self._controller.get_mode() != Controller.Mode.AWAKE and self.args.server:
+            print("Info (Sleep Mode): ignore input for privacy reasons!")
+            return
+
         #print("Info: Listener callback")
         # received audio data, now we'll recognize it using Google Speech Recognition
         try:

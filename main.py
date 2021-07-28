@@ -52,7 +52,7 @@ def main():
     pygame.mixer.init()
 
     controller: Controller = Controller(args)
-    speechToTextModule = SpeechToText(args)
+    speechToTextModule = SpeechToText(args,controller)
     speechToTextModule.start()
     profile_loader = ProfileLoader(controller=controller, speechToText=speechToTextModule)
     controller.profileLoader = profile_loader
