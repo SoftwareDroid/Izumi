@@ -73,6 +73,7 @@ def main():
         #events = pygame.event.get()
 
         # print("Process voice command" ,text)
+    print("stop server")
     if args.server:
         server.stop()
     print("Shutdown ...")
@@ -81,9 +82,8 @@ def main():
 
     # do some more unrelated things
     # we're not listening anymore, even though the background thread might still be running for a second or two while cleaning u
-    for _ in range(0, 30):
+    for _ in range(0, 20):
         time.sleep(0.1)
-    h.join()
     print("Shutdown complete")
 
 
