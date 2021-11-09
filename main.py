@@ -39,10 +39,13 @@ def main():
                         help='path to a profile for setting up the pipeline')
     parser.add_argument('--server', action='store_true',
                         help='starts remote control')
+    parser.add_argument('-file', type=str,
+                        help='starts remote control')
     parser.add_argument('-port', dest="port", required=False, default=47193, type=int)
     #                    help='path to a profile for setting up the pipeline')
 
     args = parser.parse_args()
+
 
 
         #

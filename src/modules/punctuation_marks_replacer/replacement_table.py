@@ -3,7 +3,7 @@ replacement_table = {
               ("Semikolon", ";"),
               ("neuer Absatz", "\n"),
                 ("Satz.", "."),              # The word Punkt is too short, for recognizing
-              ("Doppelpunkt", "),"),
+              ("Doppelpunkt", ":"),
               ("comma", "."),
               ("Punkt", "."),
               ("Klammer auf", "("),

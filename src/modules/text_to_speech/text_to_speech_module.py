@@ -43,7 +43,7 @@ class TextToSpeechModule(ModuleInterface):
     def _play(self):
         while self._run:
             text = self.queue.get()
-            self.queue.task_done()
+
             file: str = TextToSpeechModule._FILE
 
             slow: bool = self.settings["slow"]
@@ -55,6 +55,7 @@ class TextToSpeechModule(ModuleInterface):
             #print(file + ".wav")
             pygame.mixer.music.load(file + ".wav")
             pygame.mixer.music.play()
+            self.queue.task_done()
 
     def _replay(self, s: str, v: str, data: str) -> ParseResult:
         try:

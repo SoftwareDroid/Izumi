@@ -39,6 +39,7 @@ class OfflineTranslatorModule(ModuleInterface):
                 print(ret)
             else:
                 print("Error: ", r.status_code, r.reason)
+                return None
         except requests.exceptions.ConnectionError:
             print("Error: Translation Server not found!")
             return None
