@@ -38,10 +38,11 @@ class PunctuationMarksReplacer(ModuleInterface):
             #self._capilalize = text.startswith(".") or text.startswith("!") or text.startswith("?")
             if self._capilalize and len(text) > 1:
                 text = text[0].upper() + text[1:]
-            if self._add_space and len(text) > 1:
-                text = " " + text
+            #if self._add_space and len(text) > 1:
+            #    text = " " + text
             # Next
             self._capilalize = text.endswith(".") or text.endswith("!") or text.endswith("?")
-            self._add_space = self._capilalize or (not text.endswith(" "))
+            self._add_space = True
+            #self._add_space = self._capilalize or (not text.endswith(" "))
 
         return text

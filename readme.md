@@ -58,6 +58,12 @@ JapaneseCharTransformerModule
 
 **Please contact the [ developer](#contact), if there are missing steps, which are not listed here!**
 
+For Ubuntu 20.4
+sudo apt install xclip
+sudo apt install ffmpeg
+sudo apt-get install libasound-dev portaudio19-dev libportaudio2 libportaudiocpp0
+
+
 
 ## Usage <a name="usage"></a>
 The following command starts Izumi:
