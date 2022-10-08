@@ -38,7 +38,7 @@ class SpeechToText:
     def start(self):
         m = sr.Microphone()
         r = sr.Recognizer()
-
+        # print("q1")
 
 
         with m as source:
@@ -49,7 +49,7 @@ class SpeechToText:
         #r.pause_threshold = 0.3
 
         # start listening in the background (note that we don't have to do this inside a `with` statement)
-        self._stop_listening = r.listen_in_background(m,self._callback, phrase_time_limit=None)
+        self._stop_listening = r.listen_in_background(m,self._callback, phrase_time_limit=4)
         print("Start Listening...")
 
     def shutdown(self):
@@ -62,6 +62,7 @@ class SpeechToText:
         self.voice_commands.join()
 
     def _callback(self, recognizer, audio):
+        # print("q callback")
         if self._controller.get_mode() != Controller.Mode.AWAKE and self.args.server:
             #print("Info (Sleep Mode): ignore input for privacy reasons!")
             return

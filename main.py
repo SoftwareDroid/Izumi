@@ -30,8 +30,6 @@ import threading
 def main():
 
 
-
-
     parser = argparse.ArgumentParser(description='Izumi a personal assistant')
     parser.add_argument('-key', metavar="GOOGLE_API_KEY", type=str,
                         help="An key for accessing a speech to text API. An default will be used if not set.")
