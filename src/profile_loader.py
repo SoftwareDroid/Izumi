@@ -27,6 +27,12 @@ class ProfileLoader(ProfileLoaderInterface):
             # Speech to Text Module
             speechModule = jsonObject["speech-to-text"]
             api_key = speechModule.get("api-key", None)
+            phrase_time_limit = speechModule.get("phrase_time_limit",5)
+            non_speaking_duration = speechModule.get("non_speaking_duration",0.5)
+            self.speechToText.phrase_time_limit = phrase_time_limit
+            self.speechToText.non_speaking_duration = non_speaking_duration
+            self.speechToText.pause_threshold = speechModule.get("pause_threshold",0.8)
+            self.speechToText.phrase_threshold = speechModule.get("phrase_threshold",0.3)
             input_language = speechModule["input-language"]
             error_output = speechModule["error-output"]
             technology: str = speechModule["api"]

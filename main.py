@@ -30,6 +30,8 @@ import threading
 def main():
 
 
+
+
     parser = argparse.ArgumentParser(description='Izumi a personal assistant')
     parser.add_argument('-key', metavar="GOOGLE_API_KEY", type=str,
                         help="An key for accessing a speech to text API. An default will be used if not set.")
@@ -54,11 +56,11 @@ def main():
 
     controller: Controller = Controller(args)
     speechToTextModule = SpeechToText(args,controller)
-    speechToTextModule.start()
     profile_loader = ProfileLoader(controller=controller, speechToText=speechToTextModule)
     controller.profileLoader = profile_loader
     # Load Profile
     assert profile_loader.load_profile(args.profile_name) , "Profile load failed!"
+    speechToTextModule.start()
 
     if args.server:
         server = RemoteQueueServer(speechToTextModule.voice_commands,args.port)

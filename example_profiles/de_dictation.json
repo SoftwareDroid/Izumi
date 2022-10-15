@@ -6,14 +6,18 @@
    "speech-to-text":{
       "error-output":false,
       "input-language":"de-DE",
-      "api":"Google"
+      "api":"Google",
+      "phrase_time_limit": 5,
+      "phrase_threshold": 1,
+      "non_speaking_duration": 0.2,
+      "pause_threshold": 0.5
    },
    "main-module":{
       "system-name":"Izumi",
       "system-language":"english",
       "debug-output":false,
       "read-only":true,
-      "start-sleeping": true
+      "start-sleeping": false
    },
    "pipeline":{
       "modules":[
@@ -21,7 +25,8 @@
             "name":"PunctuationMarksReplacer",
             "activated":true,
             "settings":{
-               "language":"de-DE"
+               "language":"de-DE",
+               "init-capitalizion": true
             }
          },        
          {

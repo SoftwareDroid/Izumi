@@ -23,6 +23,7 @@ import pygame
 class SpeechToText:
     def __init__(self,args,controller: Controller):
         self.voice_commands = queue.Queue()
+        self.phrase_time_limit = None
         self.args = args
         self.input_language = ""
         self.print_errors = False
@@ -38,18 +39,22 @@ class SpeechToText:
     def start(self):
         m = sr.Microphone()
         r = sr.Recognizer()
-        # print("q1")
+
 
 
         with m as source:
             r.adjust_for_ambient_noise(source)  # we only need to calibrate once, before we start listening
-        print(r.non_speaking_duration)
-        #r.non_speaking_duration = 0.2
+        r.non_speaking_duration = self.non_speaking_duration
+        r.pause_threshold = self.pause_threshold
+        r.phrase_threshold = self.phrase_threshold
 
-        #r.pause_threshold = 0.3
 
+        print("phrase time limit ", self.phrase_time_limit)
+        print("phrase_threshold ", self.phrase_threshold)
+        print("pause_threshold ", self.pause_threshold)
+        print("non_speaking_duration ", self.non_speaking_duration)
         # start listening in the background (note that we don't have to do this inside a `with` statement)
-        self._stop_listening = r.listen_in_background(m,self._callback, phrase_time_limit=4)
+        self._stop_listening = r.listen_in_background(m,self._callback, phrase_time_limit=self.phrase_time_limit)
         print("Start Listening...")
 
     def shutdown(self):
@@ -62,7 +67,6 @@ class SpeechToText:
         self.voice_commands.join()
 
     def _callback(self, recognizer, audio):
-        # print("q callback")
         if self._controller.get_mode() != Controller.Mode.AWAKE and self.args.server:
             #print("Info (Sleep Mode): ignore input for privacy reasons!")
             return

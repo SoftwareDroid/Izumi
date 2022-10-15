@@ -58,7 +58,6 @@ class SentenceParser:
     #    self._verb_to_actions.pop(key)
 
     def parse(self, text: str) -> List[ParseResult]:
-        print("p")
         subject = None
         verb = None
         text = text.lower()

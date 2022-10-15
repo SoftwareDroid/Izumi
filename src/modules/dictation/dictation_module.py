@@ -34,7 +34,7 @@ class DictationModule(ModuleInterface):
             fmt = PartialFormatter()
             text = fmt.format(self.settings["format"], **self.module_variables)
         #text = self.auto_replacement(text)
-        pyperclip.copy(" " + text)
+        pyperclip.copy(text)
         if platform.system() == "Darwin":
             pyautogui.hotkey("command", "v")
         else:

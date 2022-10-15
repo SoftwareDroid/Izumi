@@ -16,6 +16,7 @@ replacement_table = {
               ("Bindestrich", "-"),
               ("Ausrufezeichen ", "!"),
               ("Unterstrich", "_"),
+              ("z.b.", "z. B."),
 
               ]
 }
