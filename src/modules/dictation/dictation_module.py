@@ -1,3 +1,5 @@
+
+
 # -*- coding: utf-8 -*-
 #
 # Copyright (c) 2021 Patrick Mispelhorn <patrick.mispelhorn@web.de>
@@ -27,18 +29,23 @@ class DictationModule(ModuleInterface):
 
 
     def process(self, text: str) -> str:
-
-
         # Apply format if set
         if "format" in self.settings:
             fmt = PartialFormatter()
             text = fmt.format(self.settings["format"], **self.module_variables)
         #text = self.auto_replacement(text)
+        old_state: str = pyperclip.paste()
+        # don't destroy current clipboard copy
         pyperclip.copy(text)
         if platform.system() == "Darwin":
             pyautogui.hotkey("command", "v")
         else:
             pyautogui.hotkey("ctrl", "v")
+        # restore old state
+        pyperclip.copy(old_state)
+
         return text
 
 #
+
+
