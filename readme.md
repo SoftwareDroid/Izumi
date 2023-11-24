@@ -24,6 +24,20 @@ I started to develop Izumi because there was no free good voice dictation out th
 9. [ Contact and Donate](#contact)
 
 ### How to Install <a name="install"></a>
+
+*Build an Executable:*
+conda create --name izumi python=3.10
+conda activate izumi
+cd <to_project_root>
+pip install -e .
+pyinstaller main.py
+
+*Windows Notes:*
+1. Create Link
+2. Set argument to profile file
+3. add shortcut with link properties
+4. copy to desktop
+
 Most missing dependencies can be installed with *pipenv install* in the project folder.
 The following list shows which modules of Izumi need which dependencies.
 
